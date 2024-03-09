@@ -25,10 +25,33 @@
       <!-- 2nd way: display data using column name -->
       <blockquote>
          <?= $joke['id'] ?>
-         <?= $joke['joketext'] ?>
-         <?= $joke['jokedate'] ?>
-         <img src="images/<?= $joke['image'] ?>"
-         width=100 height=100>
+         <?= $joketext ?>
+         <!-- use "date" & "strtotime" functions to customize date format -->
+         <!---
+            D (date): Mon Tue Wed ...
+            d (day): 04 15 30 ...
+            M (month): Jan Feb Mar ...
+            m (month): 01 04 12 ...
+            Y (year): 2023 2024 ...
+            y (year): 23 24 ....
+         -->
+         <?= date("d/m/Y", strtotime($joke['jokedate'])) ?>
+         <!-- 1st method: image files are included inside project folder -->
+         <!-- note: create "images" folder then copy images to project folder first -->
+         <img src="images/<?= $joke['image'] ?>" width=100 height=100>
+
+         <!-- 2nd method: image files are on Internet, only need to include url
+          <img src="<?= $joke['image'] ?>" width=100 height=100>
+         -->
+
+         <!-- 3rd method: image files are BLOB format and store in database -->
+         <!-- note: create new column named "pic" with data type BLOB then upload file to db first -->
+         <!--
+         <?php
+         echo '<img src="data:image/jpeg;base64,' . base64_encode($jokes['pic']) . '"/>';
+         ?>
+         -->
+         <!-- Note: we can only use 1 of 3 method for 1 code -->
       </blockquote>
    <?php
    };
