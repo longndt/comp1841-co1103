@@ -20,8 +20,14 @@
                                 <img src="images/<?= $joke['image'] ?>" width="100" height="100">
                         </td>
                         <td>
-                                <input type="submit" value="Edit">
-                                <input type="submit" value="Delete">
+                                <form action="editjoke.php" method="post">
+                                        <input type="hidden" name="id" value="<?= $joke['id'] ?>">
+                                        <input type="submit" value="Edit" >
+                                </form>
+                                <form action="deletejoke.php" method="post">
+                                        <input type="hidden" name="id" value="<?= $joke['id'] ?>">
+                                        <input type="submit" value="Delete" onclick="return confirm('Are you sure to delete this joke ?');">
+                                </form>
                         </td>
                 </tr>
         <?php
