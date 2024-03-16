@@ -1,8 +1,9 @@
 <?php
+//READ feature: select (retrieve) data from database
 try{
     include 'includes/DatabaseConnection.php';
 
-    $sql = 'SELECT joketext FROM jokes';
+    $sql = 'SELECT * FROM jokes';
     $jokes = $pdo->query($sql);
     $title = 'Joke list';
 
