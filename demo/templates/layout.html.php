@@ -22,7 +22,7 @@
     <main>
         <?= $output ?>
     </main>
-    <footer>&copy; IJDB 2023</footer>
+    <footer>&copy; IJDB 2024</footer>
 </body>
 
 </html>

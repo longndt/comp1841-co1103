@@ -12,7 +12,10 @@ try {
    //run (execute) the sql query
    $stm->execute();
    //show successful message
-   echo "<h1>Delete joke succeed !</h1>";
+   //echo "<h1>Delete joke succeed !</h1>";
+
+   //redirect page after deleting successfully
+   header('Location: jokes.php');
 }
 //catch the error if deleting joke failed
 catch (PDOException $exception) {
