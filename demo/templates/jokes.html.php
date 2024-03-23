@@ -5,6 +5,7 @@
                 <th>Joke Text</th>
                 <th>Joke Date</th>
                 <th>Joke Image</th>
+                <th>Joke Author</th>
                 <th>Actions</th>
         </tr>
         <!-- from 2nd row : data row -->
@@ -16,19 +17,22 @@
                         <td><?= $joke['id'] ?></td>
                         <td><?= $joke['joketext'] ?></td>
                         <td><?= $joke['jokedate'] ?></td>
+
                         <td>
-                                <img src="images/<?= $joke['image'] ?>" width="100" height="100">
+                                <img src="<?= $joke['image'] ?>" width="100" height="100">
                         </td>
+                        <td><?= $joke['jokeauthor'] ?></td>
                         <td>
                                 <form action="editjoke.php" method="post">
                                         <input type="hidden" name="id" value="<?= $joke['id'] ?>">
-                                        <input type="submit" value="Edit" >
+                                        <input type="submit" value="Edit">
                                 </form>
                                 <form action="deletejoke.php" method="post">
                                         <input type="hidden" name="id" value="<?= $joke['id'] ?>">
                                         <input type="submit" value="Delete" onclick="return confirm('Are you sure to delete this joke ?');">
                                 </form>
                         </td>
+
                 </tr>
         <?php
         }

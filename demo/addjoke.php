@@ -7,6 +7,7 @@ if (isset($_POST['joketext'])) { //case 1: user has submitted the form => run sq
       //connect to database to insert data
       include "includes/DatabaseConnection.php";
 
+      //1st way: using bind value
       //define sql query (statement)
       $sql = "INSERT INTO jokes (joketext, jokedate, image) VALUES (:joketext, :jokedate, :image)";
 
@@ -18,11 +19,15 @@ if (isset($_POST['joketext'])) { //case 1: user has submitted the form => run sq
       $stm->bindValue(":jokedate", $_POST['jokedate']);
       $stm->bindValue(":image", $_POST['image']);
 
+      //2nd way: using bind param
+      // $sql = "INSERT INTO jokes (joketext, jokedate, image, jokeauthor) VALUES (?, ?, ?)";
+      // $stm = $pdo->prepare($sql);
+      // $stm->bindParam(1,$_POST['joketext']);
+      // $stm->bindParam(2, $_POST['jokedate']);
+      // $stm->bindParam(3, $_POST['image']);
+
       //execute statement (stm)
       $stm->execute();
-
-      //show successful message
-      //echo "Insert new joke succeed !";
 
       //redirect page after insert successfully
       header('Location: jokes.php');
