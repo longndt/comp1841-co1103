@@ -16,7 +16,7 @@
                 <tr>
                         <td><?= $joke['id'] ?></td>
                         <td><?= $joke['joketext'] ?></td>
-                        <td><?= $joke['name'] ?></td>
+                        <td><?= $joke['jokedate'] ?></td>
                         <td>
                                 <img src="images/<?= $joke['image'] ?>" width="100" height="100">
                         </td>
