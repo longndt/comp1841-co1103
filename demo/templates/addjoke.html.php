@@ -6,5 +6,13 @@
    <input type="date" name="jokedate" required>
    <label for="">Joke image</label>
    <input type="text" name="image" required>
+   <label for="">Joke author</label>
+   <select name="author" id="">
+      <?php
+      foreach ($authors as $author) {
+      ?>
+         <option value="<?= $author['id'] ?>"><?= $author['name'] ?></option>
+      <?php } ?>
+   </select>
    <input type="submit" value="Add">
 </form>

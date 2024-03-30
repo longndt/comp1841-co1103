@@ -9,7 +9,7 @@ if (isset($_POST['joketext'])) { //case 1: user has submitted the form => run sq
 
       //1st way: using bind value
       //define sql query (statement)
-      $sql = "INSERT INTO jokes (joketext, jokedate, image) VALUES (:joketext, :jokedate, :image)";
+      $sql = "INSERT INTO jokes (joketext, jokedate, image, authorid) VALUES (:joketext, :jokedate, :image, :author)";
 
       //prepare sql statement
       $stm = $pdo->prepare($sql);
@@ -18,6 +18,7 @@ if (isset($_POST['joketext'])) { //case 1: user has submitted the form => run sq
       $stm->bindValue(":joketext", $_POST['joketext']);
       $stm->bindValue(":jokedate", $_POST['jokedate']);
       $stm->bindValue(":image", $_POST['image']);
+      $stm->bindValue(":author", $_POST['author']);
 
       //2nd way: using bind param
       // $sql = "INSERT INTO jokes (joketext, jokedate, image, jokeauthor) VALUES (?, ?, ?)";
@@ -38,8 +39,19 @@ if (isset($_POST['joketext'])) { //case 1: user has submitted the form => run sq
       $output = 'Database error: ' . $e->getMessage();
    }
 } else { //case 2: user has not submitted the form => load the form first
-   ob_start();
-   $title = "Add new joke";
+   //connect to db and pass the author list for user to select in the form
+   try {
+      include 'includes/DatabaseConnection.php';
+      $sql = 'SELECT * FROM authors';
+      $authors = $pdo->query($sql);
+      $title = 'Add new joke';
+      ob_start();
+      include 'templates/jokes.html.php';
+      $output = ob_get_clean();
+   } catch (PDOException $e) {
+      $title = 'An error has occured';
+      $output = 'Database error: ' . $e->getMessage();
+   }
    include 'templates/addjoke.html.php';
    $output = ob_get_clean();
 }
