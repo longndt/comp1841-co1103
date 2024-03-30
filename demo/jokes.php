@@ -3,7 +3,12 @@
 try{
     include 'includes/DatabaseConnection.php';
 
-    $sql = 'SELECT * FROM jokes';
+    $sql = 'SELECT jokes.id, image,
+    jokedate, joketext,
+    `name` FROM jokes
+    INNER JOIN authors
+    ON authorid = authors.id';
+
     $jokes = $pdo->query($sql);
     $title = 'Joke list';
 

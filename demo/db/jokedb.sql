@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 16, 2024 at 02:37 AM
+-- Generation Time: Mar 30, 2024 at 03:27 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -24,6 +24,26 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `authors`
+--
+
+CREATE TABLE `authors` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `authors`
+--
+
+INSERT INTO `authors` (`id`, `name`, `email`) VALUES
+(3, 'author 1', 'author1@gmail.com'),
+(4, 'author 2', 'author2@gmail.com\r\n');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `jokes`
 --
 
@@ -31,37 +51,61 @@ CREATE TABLE `jokes` (
   `id` int(11) NOT NULL,
   `joketext` text NOT NULL,
   `jokedate` date NOT NULL,
-  `image` varchar(500) DEFAULT NULL
+  `image` varchar(500) DEFAULT NULL,
+  `authorid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `jokes`
 --
 
-INSERT INTO `jokes` (`id`, `joketext`, `jokedate`, `image`) VALUES
-(1, 'first joke', '2024-03-07', 'chicken.png'),
-(2, 'another joke', '2024-03-02', 'doctor.png'),
-(3, 'just another joke', '2024-03-04', 'knocker.jpg');
+INSERT INTO `jokes` (`id`, `joketext`, `jokedate`, `image`, `authorid`) VALUES
+(12, 'new joke', '2024-03-16', 'chicken.png', 3),
+(13, 'joke text here', '2024-03-22', 'doctor.png', 4),
+(14, 'weekend joke', '2024-03-16', 'knocker.jpg', 4);
 
 --
 -- Indexes for dumped tables
 --
 
 --
+-- Indexes for table `authors`
+--
+ALTER TABLE `authors`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `jokes`
 --
 ALTER TABLE `jokes`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `authorid` (`authorid`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
+-- AUTO_INCREMENT for table `authors`
+--
+ALTER TABLE `authors`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `jokes`
 --
 ALTER TABLE `jokes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `jokes`
+--
+ALTER TABLE `jokes`
+  ADD CONSTRAINT `jokes_ibfk_1` FOREIGN KEY (`authorid`) REFERENCES `authors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
