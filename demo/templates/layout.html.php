@@ -17,6 +17,7 @@
             <li><a href="index.php">Home</a></li>
             <li><a href="jokes.php">Jokes List</a></li>
             <li><a href="addjoke.php">Add Joke</a></li>
+            <li><a href="addauthor.php">Add Author</a></li>
         </ul>
     </nav>
     <main>

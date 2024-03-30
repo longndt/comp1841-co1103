@@ -20,7 +20,10 @@
                         <td>
                                 <img src="images/<?= $joke['image'] ?>" width="100" height="100">
                         </td>
-                        <td><?= $joke['name'] ?></td>
+                        <td>
+                                <?= $joke['name'] ?><br>
+                                <a href="mailto:<?= $joke['email'] ?>"><?= $joke['email'] ?></a>
+                        </td>
                         <td>
                                 <form action="editjoke.php" method="post">
                                         <input type="hidden" name="id" value="<?= $joke['id'] ?>">

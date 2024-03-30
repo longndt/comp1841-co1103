@@ -1,8 +1,7 @@
 <?php
 //CREATE feature: insert data (record) to database
-
 //check whether user has submitted form or not
-if (isset($_POST['joketext'])) { //case 1: user has submitted the form => run sql statement
+if (isset($_POST['add'])) { //case 1: user has submitted the form => run sql statement
    try {
       //connect to database to insert data
       include "includes/DatabaseConnection.php";
@@ -13,8 +12,6 @@ if (isset($_POST['joketext'])) { //case 1: user has submitted the form => run sq
 
       //prepare sql statement
       $stm = $pdo->prepare($sql);
-
-      //bind values
       $stm->bindValue(":joketext", $_POST['joketext']);
       $stm->bindValue(":jokedate", $_POST['jokedate']);
       $stm->bindValue(":image", $_POST['image']);
@@ -46,14 +43,12 @@ if (isset($_POST['joketext'])) { //case 1: user has submitted the form => run sq
       $authors = $pdo->query($sql);
       $title = 'Add new joke';
       ob_start();
-      include 'templates/jokes.html.php';
+      include 'templates/addjoke.html.php';
       $output = ob_get_clean();
    } catch (PDOException $e) {
       $title = 'An error has occured';
       $output = 'Database error: ' . $e->getMessage();
    }
-   include 'templates/addjoke.html.php';
-   $output = ob_get_clean();
 }
 
 include 'templates/layout.html.php';

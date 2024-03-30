@@ -5,9 +5,11 @@ try{
 
     $sql = 'SELECT jokes.id, image,
     jokedate, joketext,
-    `name` FROM jokes
+    `name`, `email` FROM jokes
     INNER JOIN authors
-    ON authorid = authors.id';
+    ON authorid = authors.id
+    ORDER BY jokes.id DESC
+    ';
 
     $jokes = $pdo->query($sql);
     $title = 'Joke list';
