@@ -10,8 +10,8 @@ try{
     ON authorid = authors.id
     ORDER BY jokes.id DESC
     ';
-
     $jokes = $pdo->query($sql);
+
     $title = 'Joke list';
 
     ob_start();
