@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <!-- add css version to update css code (in case case css not automatic reload with latest code) -->
-    <link rel="stylesheet" href="jokes.css?v=1">
+    <link rel="stylesheet" href="css/jokes.css">
     <title><?= $title ?></title>
 </head>
 
@@ -16,8 +16,7 @@
         <ul>
             <li><a href="index.php">Home</a></li>
             <li><a href="jokes.php">Jokes List</a></li>
-            <li><a href="addjoke.php">Add Joke</a></li>
-            <li><a href="addauthor.php">Add Author</a></li>
+            <li><a href="admin/index_admin.php">Admin Area</a></li>
         </ul>
     </nav>
     <main>
