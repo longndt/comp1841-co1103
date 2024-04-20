@@ -28,6 +28,11 @@ else {
       $result = $check[0];
       if ($result >= 1)  //at least 1 record in table matched
       {
+        //start session
+         session_start();
+        //create global session variable if login succeed
+        $_SESSION['login'] = true;
+        $_SESSION['username'] = $username;
         // echo "Login succeed !";
         // redirect to homepage if success
         header ("Location: index.html.php");
